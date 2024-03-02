@@ -1,14 +1,15 @@
-import { FC } from 'react'
+import { FC } from "react";
 import { TextInput as RNTextInput } from "react-native";
-import { styles } from './TextInput.styles';
+
+import { styles } from "./TextInput.styles";
 
 interface Props {
-  placeholder?: string
-  value?: string
-  setValue?: (value: string) => void
+  placeholder?: string;
+  value?: string;
+  setValue?: (value: string) => void;
 }
 
-export const TextInput: FC<Props> = ({placeholder, value, setValue}) => {
+export const TextInput: FC<Props> = ({ placeholder, value, setValue }) => {
   return (
     <RNTextInput
       placeholder={placeholder}
@@ -18,4 +19,4 @@ export const TextInput: FC<Props> = ({placeholder, value, setValue}) => {
       style={styles.input}
     />
   );
-}
+};
