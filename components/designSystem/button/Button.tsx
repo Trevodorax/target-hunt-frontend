@@ -6,7 +6,7 @@ import { styles } from "./Button.styles";
 
 interface Props {
   label?: string;
-  onPress?: () => object;
+  onPress?: () => void;
   iconName?: "login" | "user" | "doubleright";
   variant?: "neutral" | "inversed";
 }
