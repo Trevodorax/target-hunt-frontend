@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 96,
+    marginTop: 64,
   },
   title: {
     fontSize: 24,

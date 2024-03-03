@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
   bigCenterLogoContainer: {
     display: "flex",
     width: "100%",
-    marginTop: 96,
-    marginBottom: 96,
+    marginTop: 64,
+    marginBottom: 64,
 
     alignItems: "center",
   },
