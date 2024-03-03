@@ -4,7 +4,7 @@ import { styles } from "./Home.styles";
 import { AuthSelector } from "./authSelector/AuthSelector";
 import { RoomCodeSelector } from "./roomCodeSelector/RoomCodeSelector";
 
-const logo = require("../assets/target-hunt-logo.png");
+const logo = require("@assets/target-hunt-logo.png");
 
 export const Home = () => {
   return (

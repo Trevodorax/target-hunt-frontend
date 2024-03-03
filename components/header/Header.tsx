@@ -2,8 +2,8 @@ import { Image, Text, View } from "react-native";
 
 import { styles } from "./Header.styles";
 
-const burgerMenuIcon = require("../assets/burger-menu-icon.png");
-const logo = require("../assets/target-hunt-logo.png");
+const burgerMenuIcon = require("@assets/burger-menu-icon.png");
+const logo = require("@assets/target-hunt-logo.png");
 
 export const Header = ({ style }) => {
   return (
