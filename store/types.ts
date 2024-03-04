@@ -1,6 +1,8 @@
-import { AuthLoginPostBody } from "target-hunt-bridge";
+import { AuthLoginPostBody, AuthRegisterPostBody } from "target-hunt-bridge";
 
 export type LoginAction = (body: AuthLoginPostBody) => Promise<void>;
+
+export type RegisterAction = (body: AuthRegisterPostBody) => Promise<void>;
 
 export interface AuthSlice {
   token: string | null;
