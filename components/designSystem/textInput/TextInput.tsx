@@ -8,6 +8,7 @@ interface Props {
   value?: string;
   setValue?: (value: string) => void;
   secureTextEntry?: boolean;
+  style?: object;
 }
 
 export const TextInput: FC<Props> = ({
@@ -15,6 +16,7 @@ export const TextInput: FC<Props> = ({
   value,
   setValue,
   secureTextEntry = false,
+  style,
 }) => {
   return (
     <RNTextInput
@@ -22,7 +24,7 @@ export const TextInput: FC<Props> = ({
       value={value}
       onChangeText={setValue}
       placeholderTextColor="#555"
-      style={styles.input}
+      style={[styles.input, style]}
       secureTextEntry={secureTextEntry}
     />
   );

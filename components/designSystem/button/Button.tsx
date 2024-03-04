@@ -1,6 +1,7 @@
+import { Text } from "@components/designSystem/text/Text";
 import { AntDesign } from "@expo/vector-icons";
 import { FC } from "react";
-import { View, Pressable, Text } from "react-native";
+import { View, Pressable } from "react-native";
 
 import { styles } from "./Button.styles";
 
@@ -39,6 +40,7 @@ export const Button: FC<Props> = ({
         )}
         {label && (
           <Text
+            type="h3"
             style={[
               styles.buttonLabel,
               variant === "inversed" && styles.inversedContentStyles,

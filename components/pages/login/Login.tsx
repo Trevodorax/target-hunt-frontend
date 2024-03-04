@@ -1,9 +1,12 @@
 import { Button } from "@components/designSystem/button/Button";
+import { Text } from "@components/designSystem/text/Text";
 import { TextInput } from "@components/designSystem/textInput/TextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { AuthLoginPostBodySchema, AuthLoginPostBody } from "target-hunt-bridge";
+
+import { styles } from "./Login.styles";
 
 export const Login = () => {
   const {
@@ -23,28 +26,48 @@ export const Login = () => {
   };
 
   return (
-    <View>
-      <Text>Create an account</Text>
-      <Controller
-        control={control}
-        render={({ field: { onChange, value } }) => (
-          <TextInput placeholder="Email" setValue={onChange} value={value} />
-        )}
-        name="credentials.email"
-      />
-      {errors.credentials?.email && (
-        <Text>{errors.credentials?.email?.message}</Text>
-      )}
-      <Controller
-        control={control}
-        render={({ field: { onChange, value } }) => (
-          <TextInput placeholder="Password" setValue={onChange} value={value} />
-        )}
-        name="credentials.password"
-      />
-      {errors.credentials?.password && (
-        <Text>{errors.credentials?.password?.message}</Text>
-      )}
+    <View style={styles.container}>
+      <Text type="h1" style={styles.bigTitle}>
+        Welcome back
+      </Text>
+      <View style={styles.form}>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>Email</Text>
+          <Controller
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={styles.input}
+                placeholder="Email"
+                setValue={onChange}
+                value={value}
+              />
+            )}
+            name="credentials.email"
+          />
+          {errors.credentials?.email && (
+            <Text>{errors.credentials?.email?.message}</Text>
+          )}
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>Password</Text>
+          <Controller
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={styles.input}
+                placeholder="Password"
+                setValue={onChange}
+                value={value}
+              />
+            )}
+            name="credentials.password"
+          />
+          {errors.credentials?.password && (
+            <Text>{errors.credentials?.password?.message}</Text>
+          )}
+        </View>
+      </View>
       <Button
         onPress={handleSubmit(onSubmit)}
         iconName="login"

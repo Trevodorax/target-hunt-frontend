@@ -1,5 +1,6 @@
+import { Text } from "@components/designSystem/text/Text";
 import { router } from "expo-router";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 import { styles } from "./AuthSelector.styles";
 import { Button } from "../../../designSystem/button/Button";
@@ -7,7 +8,9 @@ import { Button } from "../../../designSystem/button/Button";
 export const AuthSelector = () => {
   return (
     <View style={styles.authSelectorContainer}>
-      <Text style={styles.title}>Who's there?</Text>
+      <Text type="h1" style={styles.title}>
+        Who's there?
+      </Text>
       <View style={{ display: "flex", gap: 8 }}>
         <Button
           label="Register"

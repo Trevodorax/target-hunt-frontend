@@ -1,5 +1,6 @@
+import { Text } from "@components/designSystem/text/Text";
 import { Link } from "expo-router";
-import { Image, Text, View } from "react-native";
+import { Image, View } from "react-native";
 
 import { styles } from "./Header.styles";
 
@@ -13,7 +14,9 @@ export const Header = () => {
         <Link href="/">
           <Image style={styles.logo} source={logo} />
         </Link>
-        <Text style={styles.title}>Target Hunt</Text>
+        <Text type="h1" style={styles.title}>
+          Target Hunt
+        </Text>
         <Image style={styles.icon} source={burgerMenuIcon} />
       </View>
     </View>
