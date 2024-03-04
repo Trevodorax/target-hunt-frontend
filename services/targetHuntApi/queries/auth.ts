@@ -1,7 +1,7 @@
 import { query } from "@services/targetHuntApi/setup";
 import { AuthLoginPostBody, AuthLoginPostResponse } from "target-hunt-bridge";
 
-export const login = async (
+export const loginQuery = async (
   body: AuthLoginPostBody,
 ): Promise<AuthLoginPostResponse | null> => {
   try {

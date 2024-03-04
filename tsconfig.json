@@ -5,6 +5,7 @@
       "@components/*": ["./components/*"],
       "@assets/*": ["./assets/*"],
       "@services/*": ["./services/*"],
+      "@store/*": ["./store/*"],
     },
     "strictNullChecks": true,
   },

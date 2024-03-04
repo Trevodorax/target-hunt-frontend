@@ -2,6 +2,8 @@ import { Button } from "@components/designSystem/button/Button";
 import { Text } from "@components/designSystem/text/Text";
 import { TextInput } from "@components/designSystem/textInput/TextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { loginAction } from "@store/authSlice/actions";
+import { useGlobalStore } from "@store/store";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { View } from "react-native";
 import { AuthLoginPostBodySchema, AuthLoginPostBody } from "target-hunt-bridge";
@@ -9,6 +11,8 @@ import { AuthLoginPostBodySchema, AuthLoginPostBody } from "target-hunt-bridge";
 import { styles } from "./Login.styles";
 
 export const Login = () => {
+  const token = useGlobalStore((state) => state.token);
+
   const {
     control,
     handleSubmit,
@@ -18,11 +22,7 @@ export const Login = () => {
   });
 
   const onSubmit: SubmitHandler<AuthLoginPostBody> = async (data) => {
-    // TODO: actually submit:
-    // Create a queries file, and add the login endpoint to it
-    // Use the ky setup + mocking I did on another project
-    // Create a store, and a login action that calls this endpoint and keeps the token in the store
-    // call this action here
+    loginAction(data);
   };
 
   return (
@@ -74,6 +74,11 @@ export const Login = () => {
         label="Log In"
         variant="inversed"
       />
+      {token === null ? (
+        <Text>You are not logged in</Text>
+      ) : (
+        <Text>You are logged in with token {token}</Text>
+      )}
     </View>
   );
 };
