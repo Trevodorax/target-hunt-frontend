@@ -7,12 +7,12 @@ export const styles = StyleSheet.create({
     justifyContent: "flex-end",
     padding: 16,
     paddingTop: 64,
-
-    backgroundColor: "#fff",
+    backgroundColor: "#fafafa",
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.1,
     shadowRadius: 10,
+    zIndex: 10,
   },
   headerContentZone: {
     display: "flex",

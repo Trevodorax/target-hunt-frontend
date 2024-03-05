@@ -5,11 +5,22 @@ import { View, Pressable } from "react-native";
 
 import { styles } from "./Button.styles";
 
+export type AntdIconName =
+  | "login"
+  | "user"
+  | "doubleright"
+  | "menu-fold"
+  | "menu-unfold"
+  | "home"
+  | "logout";
+
 interface Props {
   label?: string;
   onPress?: () => void;
-  iconName?: "login" | "user" | "doubleright";
-  variant?: "neutral" | "inversed";
+  iconName?: AntdIconName;
+  variant?: "neutral" | "inversed" | "low";
+  style?: object;
+  textAlign?: "auto" | "center" | "justify" | "left" | "right";
 }
 
 export const Button: FC<Props> = ({
@@ -17,6 +28,8 @@ export const Button: FC<Props> = ({
   onPress,
   iconName,
   variant = "neutral",
+  style,
+  textAlign = "center",
 }) => {
   return (
     <View
@@ -24,6 +37,8 @@ export const Button: FC<Props> = ({
         styles.buttonContainer,
         !label && styles.iconOnlyButtonContainerStyles,
         variant === "inversed" && styles.inversedContainerStyles,
+        variant === "low" && styles.lowContainerStyles,
+        style,
       ]}
     >
       <Pressable
@@ -44,6 +59,7 @@ export const Button: FC<Props> = ({
             style={[
               styles.buttonLabel,
               variant === "inversed" && styles.inversedContentStyles,
+              { textAlign, paddingLeft: textAlign === "left" ? 8 : 0 },
             ]}
           >
             {label}

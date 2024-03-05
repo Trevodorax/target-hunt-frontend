@@ -3,9 +3,9 @@ import {
   registerQuery,
 } from "@services/targetHuntApi/queries/auth";
 import { useGlobalStore } from "@store/store";
-import { LoginAction, RegisterAction } from "@store/types";
+import { AuthLoginPostBody, AuthRegisterPostBody } from "target-hunt-bridge";
 
-export const loginAction: LoginAction = async (body): Promise<void> => {
+export const loginAction = async (body: AuthLoginPostBody): Promise<void> => {
   const setState = useGlobalStore.setState;
   const response = await loginQuery(body);
 
@@ -16,7 +16,9 @@ export const loginAction: LoginAction = async (body): Promise<void> => {
   setState({ token: response.token });
 };
 
-export const registerAction: RegisterAction = async (body): Promise<void> => {
+export const registerAction = async (
+  body: AuthRegisterPostBody,
+): Promise<void> => {
   const setState = useGlobalStore.setState;
   const response = await registerQuery(body);
 
@@ -25,4 +27,8 @@ export const registerAction: RegisterAction = async (body): Promise<void> => {
   }
 
   setState({ token: response.token });
+};
+
+export const logoutAction = async (): Promise<void> => {
+  useGlobalStore.setState({ token: null });
 };

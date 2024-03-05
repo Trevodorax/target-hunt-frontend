@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
   buttonLabel: {
     flexGrow: 1,
     fontSize: 16,
-    textAlign: "center",
     fontWeight: "500",
   },
   iconOnlyButtonContainerStyles: {
@@ -48,5 +47,9 @@ export const styles = StyleSheet.create({
   },
   inversedContentStyles: {
     color: "#FFF",
+  },
+  lowContainerStyles: {
+    backgroundColor: "#FFFFFF00", // transparent
+    borderColor: "#FFFFFF00", // transparent
   },
 });
