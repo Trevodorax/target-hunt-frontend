@@ -5,6 +5,8 @@ import {
   registerQuery,
 } from "@services/targetHuntApi/queries/auth";
 import { useGlobalStore } from "@store/store";
+import { router } from "expo-router";
+import Toast from "react-native-toast-message";
 import {
   AuthLoginPostBody,
   AuthMePatchBody,
@@ -22,6 +24,9 @@ export const loginAction = async (body: AuthLoginPostBody): Promise<void> => {
   setState({ token: response.token });
 
   fetchMyInfoAction();
+
+  router.push("/");
+  Toast.show({ type: "success", text1: "You are connected !" });
 };
 
 export const registerAction = async (
@@ -37,6 +42,9 @@ export const registerAction = async (
   setState({ token: response.token });
 
   fetchMyInfoAction();
+
+  router.push("/");
+  Toast.show({ type: "success", text1: "You are connected !" });
 };
 
 export const logoutAction = async (): Promise<void> => {
@@ -67,4 +75,5 @@ export const editMyInfoAction = async (
     email: editedInfo.email,
     pseudo: editedInfo.pseudo,
   });
+  Toast.show({ type: "success", text1: "Successfully edited personal info" });
 };

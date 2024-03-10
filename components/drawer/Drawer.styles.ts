@@ -13,9 +13,9 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.1,
     shadowRadius: 10,
-    paddingTop: 32,
   },
   title: {
+    paddingTop: 16,
     paddingStart: 24,
     display: "flex",
   },

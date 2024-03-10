@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export type ButtonVariant = "neutral" | "inversed" | "low";
 
-export const computeStyles = (isActive: boolean, variant: ButtonVariant) => {
+export const computeStyles = (variant: ButtonVariant, iconOnly: boolean) => {
   const backgroundColorForVariant: Record<ButtonVariant, string> = {
     neutral: "#FFF",
     inversed: "#000",
@@ -19,7 +19,7 @@ export const computeStyles = (isActive: boolean, variant: ButtonVariant) => {
       borderWidth: 1,
       borderRadius: 4,
       paddingHorizontal: 8,
-      backgroundColor: isActive ? "#AAA" : backgroundColorForVariant[variant],
+      backgroundColor: backgroundColorForVariant[variant],
     },
     button: {
       display: "flex",
@@ -32,7 +32,7 @@ export const computeStyles = (isActive: boolean, variant: ButtonVariant) => {
       borderRadius: 4,
     },
     buttonIcon: {
-      paddingRight: 8,
+      paddingRight: iconOnly ? 0 : 8,
       color: contentColor,
     },
     buttonLabel: {

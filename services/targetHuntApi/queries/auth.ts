@@ -1,5 +1,5 @@
 import { query } from "@services/targetHuntApi/setup";
-import { Alert } from "react-native";
+import Toast from "react-native-toast-message";
 import {
   AuthLoginPostBody,
   AuthLoginPostResponse,
@@ -13,9 +13,9 @@ import {
 function handleError(e: Error) {
   console.log("error", e);
   if (e.message === "Network request failed") {
-    Alert.alert("We can't talk to the server");
+    Toast.show({ type: "error", text1: "We can't talk to the server" });
   } else {
-    Alert.alert(e?.message ?? "An error occured");
+    Toast.show({ type: "error", text1: e?.message ?? "An error occured" });
   }
 }
 
