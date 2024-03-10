@@ -27,3 +27,16 @@ mockRouter.addRoute(
   },
 );
 */
+
+/*
+mockRouter.addRoute(
+  { pathname: "/auth/me", method: "PATCH" },
+  {
+    data: {
+      pseudo: "modifiedPseudo",
+      email: "modifiedEmail@gm.co",
+    },
+    status: 200,
+  },
+);
+*/

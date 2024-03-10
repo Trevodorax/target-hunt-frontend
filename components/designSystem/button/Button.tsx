@@ -1,9 +1,9 @@
 import { Text } from "@components/designSystem/text/Text";
 import { AntDesign } from "@expo/vector-icons";
 import { FC } from "react";
-import { View, Pressable } from "react-native";
+import { View, Pressable, ActivityIndicator } from "react-native";
 
-import { styles } from "./Button.styles";
+import { ButtonVariant, computeStyles } from "./Button.styles";
 
 export type AntdIconName =
   | "login"
@@ -12,15 +12,17 @@ export type AntdIconName =
   | "menu-fold"
   | "menu-unfold"
   | "home"
-  | "logout";
+  | "logout"
+  | "reload1";
 
 interface Props {
   label?: string;
   onPress?: () => void;
   iconName?: AntdIconName;
-  variant?: "neutral" | "inversed" | "low";
+  variant?: ButtonVariant;
   style?: object;
   textAlign?: "auto" | "center" | "justify" | "left" | "right";
+  loading?: boolean;
 }
 
 export const Button: FC<Props> = ({
@@ -30,35 +32,44 @@ export const Button: FC<Props> = ({
   variant = "neutral",
   style,
   textAlign = "center",
+  loading = false,
 }) => {
+  const iconOnly = label === undefined || label === null || label === "";
+  const styles = computeStyles(variant, iconOnly);
+
   return (
     <View
       style={[
         styles.buttonContainer,
-        !label && styles.iconOnlyButtonContainerStyles,
-        variant === "inversed" && styles.inversedContainerStyles,
-        variant === "low" && styles.lowContainerStyles,
+        iconOnly && styles.iconOnlyButtonContainerStyles,
         style,
       ]}
     >
       <Pressable
-        style={[styles.button, !label && styles.iconOnlyButtonStyles]}
+        style={[styles.button, iconOnly && styles.iconOnlyButtonStyles]}
         onPress={onPress}
       >
-        {iconName && (
-          <AntDesign
-            style={variant === "inversed" && styles.inversedContentStyles}
-            name={iconName}
+        {loading ? (
+          <ActivityIndicator
             size={24}
-            color="black"
+            color={variant === "inversed" ? "#FFF" : "#000"}
+            style={styles.buttonIcon}
           />
+        ) : (
+          iconName && (
+            <AntDesign
+              style={styles.buttonIcon}
+              name={iconName}
+              size={24}
+              color="black"
+            />
+          )
         )}
         {label && (
           <Text
             type="h3"
             style={[
               styles.buttonLabel,
-              variant === "inversed" && styles.inversedContentStyles,
               { textAlign, paddingLeft: textAlign === "left" ? 8 : 0 },
             ]}
           >
