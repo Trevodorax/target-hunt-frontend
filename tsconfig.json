@@ -2,8 +2,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@components/*": ["./components/*"],
+      "@assets/*": ["./assets/*"],
+      "@services/*": ["./services/*"],
+      "@store/*": ["./store/*"],
+    },
+    "strictNullChecks": true,
   },
   "extends": "expo/tsconfig.base"
 }
