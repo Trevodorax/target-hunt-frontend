@@ -1,4 +1,5 @@
 import {
+  fetchMyInfoQuery,
   loginQuery,
   registerQuery,
 } from "@services/targetHuntApi/queries/auth";
@@ -14,6 +15,8 @@ export const loginAction = async (body: AuthLoginPostBody): Promise<void> => {
   }
 
   setState({ token: response.token });
+
+  fetchMyInfoAction();
 };
 
 export const registerAction = async (
@@ -27,8 +30,22 @@ export const registerAction = async (
   }
 
   setState({ token: response.token });
+
+  fetchMyInfoAction();
 };
 
 export const logoutAction = async (): Promise<void> => {
-  useGlobalStore.setState({ token: null });
+  useGlobalStore.setState({ token: null, id: null, email: null, pseudo: null });
+};
+
+export const fetchMyInfoAction = async (): Promise<void> => {
+  const info = await fetchMyInfoQuery();
+  if (!info) {
+    return;
+  }
+  useGlobalStore.setState({
+    id: info.id,
+    pseudo: info.pseudo,
+    email: info.email,
+  });
 };

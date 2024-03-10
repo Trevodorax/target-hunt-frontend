@@ -3,7 +3,6 @@ import { Text } from "@components/designSystem/text/Text";
 import { TextInput } from "@components/designSystem/textInput/TextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerAction } from "@store/authSlice/actions";
-import { useGlobalStore } from "@store/store";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { View } from "react-native";
 import {
@@ -14,8 +13,6 @@ import {
 import { styles } from "./Register.styles";
 
 export const Register = () => {
-  const token = useGlobalStore((state) => state.token);
-
   const {
     control,
     handleSubmit,
@@ -91,11 +88,6 @@ export const Register = () => {
         label="Register"
         variant="inversed"
       />
-      {token === null ? (
-        <Text>You are not logged in</Text>
-      ) : (
-        <Text>You are logged in with token {token}</Text>
-      )}
     </View>
   );
 };

@@ -3,7 +3,6 @@ import { Text } from "@components/designSystem/text/Text";
 import { TextInput } from "@components/designSystem/textInput/TextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginAction } from "@store/authSlice/actions";
-import { useGlobalStore } from "@store/store";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { View } from "react-native";
 import { AuthLoginPostBodySchema, AuthLoginPostBody } from "target-hunt-bridge";
@@ -11,8 +10,6 @@ import { AuthLoginPostBodySchema, AuthLoginPostBody } from "target-hunt-bridge";
 import { styles } from "./Login.styles";
 
 export const Login = () => {
-  const token = useGlobalStore((state) => state.token);
-
   const {
     control,
     handleSubmit,
@@ -74,11 +71,6 @@ export const Login = () => {
         label="Log In"
         variant="inversed"
       />
-      {token === null ? (
-        <Text>You are not logged in</Text>
-      ) : (
-        <Text>You are logged in with token {token}</Text>
-      )}
     </View>
   );
 };

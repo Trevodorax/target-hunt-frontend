@@ -1,5 +1,8 @@
 export interface AuthSlice {
   token: string | null;
+  id: string | null;
+  pseudo: string | null;
+  email: string | null;
 }
 
 export interface LayoutSlice {

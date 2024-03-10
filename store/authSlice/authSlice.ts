@@ -5,6 +5,9 @@ import { GlobalStore, AuthSlice } from "../types";
 
 export const initialState: AuthSlice = {
   token: null,
+  id: null,
+  pseudo: null,
+  email: null,
 };
 
 export const createAuthSlice: StateCreator<
