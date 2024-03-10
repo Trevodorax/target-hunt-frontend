@@ -1,4 +1,5 @@
 import { query } from "@services/targetHuntApi/setup";
+import { Alert } from "react-native";
 import {
   AuthLoginPostBody,
   AuthLoginPostResponse,
@@ -9,6 +10,15 @@ import {
   AuthRegisterPostResponse,
 } from "target-hunt-bridge";
 
+function handleError(e: Error) {
+  console.log("error", e);
+  if (e.message === "Network request failed") {
+    Alert.alert("We can't talk to the server");
+  } else {
+    Alert.alert(e?.message ?? "An error occured");
+  }
+}
+
 export const loginQuery = async (
   body: AuthLoginPostBody,
 ): Promise<AuthLoginPostResponse | null> => {
@@ -18,7 +28,8 @@ export const loginQuery = async (
     });
     const json = await result.json<AuthLoginPostResponse>();
     return json;
-  } catch {
+  } catch (e) {
+    handleError(e);
     return null;
   }
 };
@@ -32,7 +43,8 @@ export const registerQuery = async (
     });
     const json = await result.json<AuthLoginPostResponse>();
     return json;
-  } catch {
+  } catch (e) {
+    handleError(e);
     return null;
   }
 };
@@ -42,7 +54,8 @@ export const fetchMyInfoQuery = async (): Promise<AuthMeGetResponse | null> => {
     const result = await query.get("auth/me");
     const json = await result.json<AuthMeGetResponse>();
     return json;
-  } catch {
+  } catch (e) {
+    handleError(e);
     return null;
   }
 };
@@ -54,7 +67,8 @@ export const editMyInfoQuery = async (
     const result = await query.patch("auth/me", { json: body });
     const json = await result.json<AuthMePatchResponse>();
     return json;
-  } catch {
+  } catch (e) {
+    handleError(e);
     return null;
   }
 };
