@@ -12,7 +12,8 @@ export type AntdIconName =
   | "menu-fold"
   | "menu-unfold"
   | "home"
-  | "logout";
+  | "logout"
+  | "reload1";
 
 interface Props {
   label?: string;

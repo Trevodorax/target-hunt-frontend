@@ -1,10 +1,15 @@
 import {
+  editMyInfoQuery,
   fetchMyInfoQuery,
   loginQuery,
   registerQuery,
 } from "@services/targetHuntApi/queries/auth";
 import { useGlobalStore } from "@store/store";
-import { AuthLoginPostBody, AuthRegisterPostBody } from "target-hunt-bridge";
+import {
+  AuthLoginPostBody,
+  AuthMePatchBody,
+  AuthRegisterPostBody,
+} from "target-hunt-bridge";
 
 export const loginAction = async (body: AuthLoginPostBody): Promise<void> => {
   const setState = useGlobalStore.setState;
@@ -47,5 +52,19 @@ export const fetchMyInfoAction = async (): Promise<void> => {
     id: info.id,
     pseudo: info.pseudo,
     email: info.email,
+  });
+};
+
+export const editMyInfoAction = async (
+  newInfo: AuthMePatchBody,
+): Promise<void> => {
+  const editedInfo = await editMyInfoQuery(newInfo);
+  if (!editedInfo) {
+    return;
+  }
+
+  useGlobalStore.setState({
+    email: editedInfo.email,
+    pseudo: editedInfo.pseudo,
   });
 };

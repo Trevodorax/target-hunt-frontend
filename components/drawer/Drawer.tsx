@@ -82,6 +82,20 @@ export const Drawer: FC = () => {
           : null,
       ],
     },
+    {
+      title: "Settings",
+      actions: [
+        token
+          ? {
+              iconName: "user",
+              label: "My info",
+              callback: () => {
+                router.push("/editMyInfo");
+              },
+            }
+          : null,
+      ],
+    },
   ];
 
   return (
