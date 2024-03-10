@@ -3,6 +3,7 @@ import { Text } from "@components/designSystem/text/Text";
 import { TextInput } from "@components/designSystem/textInput/TextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginAction } from "@store/authSlice/actions";
+import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { View } from "react-native";
 import { AuthLoginPostBodySchema, AuthLoginPostBody } from "target-hunt-bridge";
@@ -10,6 +11,7 @@ import { AuthLoginPostBodySchema, AuthLoginPostBody } from "target-hunt-bridge";
 import { styles } from "./Login.styles";
 
 export const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     control,
     handleSubmit,
@@ -19,7 +21,9 @@ export const Login = () => {
   });
 
   const onSubmit: SubmitHandler<AuthLoginPostBody> = async (data) => {
-    loginAction(data);
+    setIsLoading(true);
+    await loginAction(data);
+    setIsLoading(false);
   };
 
   return (
@@ -43,7 +47,9 @@ export const Login = () => {
             name="credentials.email"
           />
           {errors.credentials?.email && (
-            <Text>{errors.credentials?.email?.message}</Text>
+            <Text style={styles.errorText}>
+              {errors.credentials?.email?.message}
+            </Text>
           )}
         </View>
         <View style={styles.inputContainer}>
@@ -61,7 +67,9 @@ export const Login = () => {
             name="credentials.password"
           />
           {errors.credentials?.password && (
-            <Text>{errors.credentials?.password?.message}</Text>
+            <Text style={styles.errorText}>
+              {errors.credentials?.password?.message}
+            </Text>
           )}
         </View>
       </View>
@@ -70,6 +78,7 @@ export const Login = () => {
         iconName="login"
         label="Log In"
         variant="inversed"
+        loading={isLoading}
       />
     </View>
   );

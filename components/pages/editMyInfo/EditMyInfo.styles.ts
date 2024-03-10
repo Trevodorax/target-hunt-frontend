@@ -25,4 +25,10 @@ export const styles = StyleSheet.create({
   input: {
     width: 160,
   },
+  errorText: {
+    paddingTop: 4,
+    color: "#DA4437",
+    textAlign: "right",
+    width: 160,
+  },
 });

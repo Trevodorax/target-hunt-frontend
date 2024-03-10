@@ -1,55 +1,60 @@
 import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create({
-  buttonContainer: {
-    width: 160,
-    height: 40,
-    borderColor: "#000",
-    borderWidth: 1,
-    borderRadius: 4,
-    paddingHorizontal: 8,
-  },
-  button: {
-    display: "flex",
-    width: "100%",
-    height: "100%",
+export type ButtonVariant = "neutral" | "inversed" | "low";
 
-    flexDirection: "row",
-    alignItems: "center",
+export const computeStyles = (isActive: boolean, variant: ButtonVariant) => {
+  const backgroundColorForVariant: Record<ButtonVariant, string> = {
+    neutral: "#FFF",
+    inversed: "#000",
+    low: "FF000000",
+  };
 
-    borderRadius: 4,
-  },
-  buttonIcon: {
-    paddingRight: 8,
-  },
-  buttonLabel: {
-    flexGrow: 1,
-    fontSize: 16,
-    fontWeight: "500",
-  },
-  iconOnlyButtonContainerStyles: {
-    display: "flex",
-    width: 40,
+  const contentColor = variant === "inversed" ? "#FFF" : "#000";
 
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 0,
-  },
-  iconOnlyButtonStyles: {
-    display: "flex",
+  return StyleSheet.create({
+    buttonContainer: {
+      width: 160,
+      height: 40,
+      borderColor: variant === "low" ? "#FFFFFF00" : "#000",
+      borderWidth: 1,
+      borderRadius: 4,
+      paddingHorizontal: 8,
+      backgroundColor: isActive ? "#AAA" : backgroundColorForVariant[variant],
+    },
+    button: {
+      display: "flex",
+      width: "100%",
+      height: "100%",
 
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 0,
-  },
-  inversedContainerStyles: {
-    backgroundColor: "#000",
-  },
-  inversedContentStyles: {
-    color: "#FFF",
-  },
-  lowContainerStyles: {
-    backgroundColor: "#FFFFFF00", // transparent
-    borderColor: "#FFFFFF00", // transparent
-  },
-});
+      flexDirection: "row",
+      alignItems: "center",
+
+      borderRadius: 4,
+    },
+    buttonIcon: {
+      paddingRight: 8,
+      color: contentColor,
+    },
+    buttonLabel: {
+      flexGrow: 1,
+      fontSize: 16,
+      fontWeight: "500",
+      color: contentColor,
+    },
+    iconOnlyButtonContainerStyles: {
+      display: "flex",
+      width: 40,
+
+      justifyContent: "center",
+      alignItems: "center",
+      paddingHorizontal: 0,
+    },
+    iconOnlyButtonStyles: {
+      display: "flex",
+
+      justifyContent: "center",
+      alignItems: "center",
+      paddingHorizontal: 0,
+    },
+  });
+};

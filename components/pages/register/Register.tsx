@@ -3,6 +3,7 @@ import { Text } from "@components/designSystem/text/Text";
 import { TextInput } from "@components/designSystem/textInput/TextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerAction } from "@store/authSlice/actions";
+import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { View } from "react-native";
 import {
@@ -13,6 +14,7 @@ import {
 import { styles } from "./Register.styles";
 
 export const Register = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     control,
     handleSubmit,
@@ -22,7 +24,9 @@ export const Register = () => {
   });
 
   const onSubmit: SubmitHandler<AuthRegisterPostBody> = async (data) => {
-    registerAction(data);
+    setIsLoading(true);
+    await registerAction(data);
+    setIsLoading(false);
   };
 
   return (
@@ -45,7 +49,9 @@ export const Register = () => {
             )}
             name="user.pseudo"
           />
-          {errors.user?.pseudo && <Text>{errors.user?.pseudo?.message}</Text>}
+          {errors.user?.pseudo && (
+            <Text style={styles.errorText}>{errors.user?.pseudo?.message}</Text>
+          )}
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>Email</Text>
@@ -61,7 +67,9 @@ export const Register = () => {
             )}
             name="user.email"
           />
-          {errors.user?.email && <Text>{errors.user?.email?.message}</Text>}
+          {errors.user?.email && (
+            <Text style={styles.errorText}>{errors.user?.email?.message}</Text>
+          )}
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>Password</Text>
@@ -78,7 +86,9 @@ export const Register = () => {
             name="user.password"
           />
           {errors.user?.password && (
-            <Text>{errors.user?.password?.message}</Text>
+            <Text style={styles.errorText}>
+              {errors.user?.password?.message}
+            </Text>
           )}
         </View>
       </View>
@@ -87,6 +97,7 @@ export const Register = () => {
         iconName="user"
         label="Register"
         variant="inversed"
+        loading={isLoading}
       />
     </View>
   );
