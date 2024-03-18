@@ -33,10 +33,6 @@
     "plugins": [
       "expo-router"
     ],
-    "scheme": "target-hunt",
-    "packagerOpts": {
-      "config": "metro.config.js",
-      "sourceExts": ["js", "jsx", "css"]
-    }
+    "scheme": "target-hunt"
   }
 }
