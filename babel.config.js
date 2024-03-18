@@ -5,6 +5,8 @@ module.exports = function (api) {
     plugins: [
       [
         "module-resolver",
+        "react-native-classname-to-style",
+        ["react-native-platform-specific-extensions", { extensions: ["css"] }],
         {
           alias: {
             "@components": "./components",
