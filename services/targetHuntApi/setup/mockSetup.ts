@@ -1,6 +1,6 @@
 import { SimplifiedResponse } from "@services/mocking/MockRouter";
 
-import { mockRouter } from "./mockedRoutes";
+import { mockRouter } from "../mockedRoutes";
 
 // if it returns a response, the query doesn't even leave this, and terminates immediately
 // if it returns a request, there is no interception, and the query goes to the real API

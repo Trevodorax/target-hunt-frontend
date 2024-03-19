@@ -1,7 +1,7 @@
-import { mockBeforeRequestInterceptor } from "@services/targetHuntApi/mockSetup";
+import { mockBeforeRequestInterceptor } from "@services/targetHuntApi/setup/mockSetup";
 import ky from "ky";
 
-import { authInterceptor } from "./authInterceptor";
+import { authInterceptor } from "./setup/authInterceptor";
 
 export const query = ky.create({
   prefixUrl: "http://localhost:3000",
